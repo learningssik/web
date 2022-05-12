@@ -5,34 +5,46 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <script>
-      function NightDayHandler(self){
-        var target = document.querySelector('body');
-        if (self.value === 'night'){
-          target.style.backgroundColor='black';
-          target.style.color='white';
-          self.value = 'day';
 
+
+      var Links = {
+        SetColor:function(color){
           var alist = document.querySelectorAll('a');
           var i = 0;
           while(i < alist.length){
-            alist[i].style.color = 'powderblue';
-            i = i + 1;
-          }
-
-        } else {
-          target.style.backgroundColor='white';
-          target.style.color='black';
-          self.value = 'night';
-
-          var alist = document.querySelectorAll('a');
-          var i = 0;
-          while(i < alist.length){
-            alist[i].style.color = 'blue';
+            alist[i].style.color = color;
             i = i + 1;
           }
         }
+      }
+
+      var Body = {
+        setColor:function(color){
+          document.querySelector('body').style.color=color;
+        },
+        setBackgroundColor:function(color){
+          document.querySelector('body').style.backgroundColor=color;
+        }
+      }
 
 
+
+      function NightDayHandler(self){
+        var target = document.querySelector('body');
+        if (self.value === 'night'){
+          Body.setBackgroundColor('black');
+          Body.setColor('white');
+          self.value = 'day';
+          Links.SetColor('powderblue');
+
+
+        } else {
+          Body.setBackgroundColor('white');
+          Body.setColor('black');
+          self.value = 'night';
+
+          Links.SetColor('blue');
+          }
       }
 
     </script>
@@ -72,10 +84,7 @@
     <input type="button" value="night" onclick="
     NightDayHandler(this);
     ">
-    <input type="button" value="night" onclick="
-    NightDayHandler(this);
-    ">
-    
+
     <div id="grid">
       <ol>
         <li><a href="1.html" >html</a> </li>
